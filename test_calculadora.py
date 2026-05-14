@@ -1,6 +1,6 @@
 import pytest
 
-from calculadora import calcula_media, situacao
+from calculadora import calcula_media, situacao, situacao_final
 
 def test_media_simples():
     n1, n2, n3 = 7.0, 8.0, 9.0
@@ -30,12 +30,20 @@ def test_nota_negativa_eh_invalida():
     with pytest.raises(ValueError):
         calcula_media(7.0, -1.0, 8.0)
 
+def test_aluno_aprovado_na_recuperacao():
+    assert situacao_final(6.0, 6.0) == "aprovado na recuperacao"
+    assert situacao_final(6.9, 8.0) == "aprovado na recuperacao"
 
+def test_aluno_reprovado_na_recuperacao():
+    assert situacao_final(4.0, 4.0) == "reprovado na recuperacao"
 
+def test_notas_invalidas_situacao_final():
+    with pytest.raises(ValueError):
+        situacao_final(11.0, 5.0)
 
-
-
+    with pytest.raises(ValueError):
+        situacao_final(5.0, -1.0)
 
 # Esse trabalho foi muito legal
-# pois me fez lembrar de uma frase do autor do livro "Learn To Program", Chris Pine
+# pois me fez lembrar de uma frase do autor do livro "Learn To Program", Chris Pine: 
 # "Programming is not about what you know it's about what you can figure out"
