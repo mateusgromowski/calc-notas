@@ -5,6 +5,7 @@ on: [push, pull_request]
 jobs:
   testa:
     runs-on: ubuntu-latest
+
     steps:
       - name: Baixar o codigo
         uses: actions/checkout@v4
@@ -15,7 +16,7 @@ jobs:
           python-version: "3.12"
 
       - name: Instalar dependencias
-      run: pip install -r requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Rodar testes
-      run: pytest -v
+        run: pytest -v
